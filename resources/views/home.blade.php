@@ -12,9 +12,10 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif  
 
-                    You are logged in!
+                   
+                    <menu-container :items="{{json_encode($menus)}}"></menu-container>
                 </div>
             </div>
         </div>
