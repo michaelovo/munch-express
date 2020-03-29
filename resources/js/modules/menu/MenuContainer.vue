@@ -1,9 +1,25 @@
 <template>
     <div class="wrapper menu__container">
-        <div class="row justify-content-center">
+        <div class="row">
             
-            <p>I'm an example component.</p>
-            
+            <div class="col-md-8">
+                <card-component>
+
+                    <template slot="title">My menu items</template>
+                    <template slot="body">Contents loading...</template>
+
+                </card-component>
+            </div>
+
+            <div class="col-md-4">
+                 <card-component>
+
+                    <template slot="title">Add menu item</template>
+                    <template slot="body">Form loading...</template>
+
+                </card-component>
+            </div>
+               
         </div>
     </div>
 </template>
