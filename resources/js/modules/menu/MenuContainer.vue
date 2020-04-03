@@ -6,7 +6,21 @@
                 <card-component>
 
                     <template slot="title">My menu items</template>
-                    <template slot="body">Contents loading...</template>
+                    
+                    <template slot="main">
+                        <div class="section">
+                            <multiselect 
+                                v-model="menu" :options="categories" 
+                                :searchable="false" 
+                                :close-on-select="true" 
+                                :show-labels="false" placeholder="Select Categories">
+                            </multiselect>
+                        </div>
+
+                        <menu-group :items="currentMenuitems"></menu-group>
+                        
+
+                    </template>
 
                 </card-component>
             </div>
@@ -15,7 +29,7 @@
                  <card-component>
 
                     <template slot="title">Add menu item</template>
-                    <template slot="body">Form loading...</template>
+                    <template slot="main">Form loading...</template>
 
                 </card-component>
             </div>
@@ -25,9 +39,31 @@
 </template>
 
 <script>
+
+    import _ from 'lodash';
+    import Multiselect from 'vue-multiselect';
+    import MenuGroup from "./MenuGroups.vue";
+
     export default {
-       props:[
-           'items',
-       ]
+       props:['items'],
+       components: {Multiselect, MenuGroup},
+        created(){
+            _.forEach(this.items,(item, key) =>{
+                this.categories.push(key);
+            });//fetch the categories
+            this.menu = this.categories[0];//Auto select first category
+        },
+        data(){
+            return {
+                menu: '',
+                categories: [],
+            }
+        },
+        computed:{
+            currentMenuitems(){
+                return this.items[this.menu]
+                // return submenu items of selected menu/category
+            }
+        }
     }
 </script>

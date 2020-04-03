@@ -7,10 +7,10 @@ class MenuService
 {
     public function getMenuWithCategory(array $restoIds)
     {
-        $menus = Menu::whereIn('resto_id',$restoIds)
+        $categories = Menu::whereIn('resto_id',$restoIds)
         ->get()
         ->groupBy('category.name');
-        return $menus;
+        return $categories;
     }
     
 }
